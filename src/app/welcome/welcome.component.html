@@ -1,0 +1,16 @@
+<div class="container">
+    <h1>Welcome!</h1>
+    <p>Greetings <strong>{{name}}</strong>.<br> -><a routerLink="/todos">Manage your ToDos</a></p>
+</div>
+
+<div class="container">
+
+    <button (click)="getWelcomeMessageWithParameter()" class="bn btn-success">Welcome Message</button>
+
+
+</div>
+<div class="container" *ngIf="welcomeMessageService">
+        <H2>Your Customized Welcome Message</H2>
+        {{welcomeMessageService}}
+    
+    </div>
