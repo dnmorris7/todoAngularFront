@@ -15,26 +15,26 @@ export class BasicAuthenticationService {
 
 
   isUserLoggedIn() {
-    let user = sessionStorage.getItem('authenticaterUser')
+    let user = sessionStorage.getItem(AUTHENTICATED_USER)
     return !(user === null)
   }
 
   getAuthenticatedUser() {
-    return sessionStorage.getItem('authenticatorUser')
+    return sessionStorage.getItem(AUTHENTICATED_USER)
   }
   getAuthenticatedToken() {
     if (this.getAuthenticatedUser())
-      return sessionStorage.getItem('token')
+      return sessionStorage.getItem(TOKEN)
   }
 
 
 
   logout() {
-    sessionStorage.removeItem('authenticaterUser')
-
+    sessionStorage.removeItem(AUTHENTICATED_USER)
+    sessionStorage.removeItem(TOKEN);
   }
 
-  
+
 
   executeAuthenticationService(username, password) {
 
@@ -66,16 +66,17 @@ export class BasicAuthenticationService {
     return this.http.post<any>(
       `${API_URL}/authenticate`, { username, password }).pipe(
 
-      map(
-        data => {
-          sessionStorage.setItem(AUTHENTICATED_USER, username);
-          sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
-          return data;
-        }
+        map(
+          data => {
+            sessionStorage.setItem(AUTHENTICATED_USER, username);
+            sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
+            console.log(`Username ${username} with \n Bearer ${data.token}`)
+            return data;
+          }
+
+        )
 
       )
-
-    )
     // console.log("Execute Hello World Bean Service")
 
   }

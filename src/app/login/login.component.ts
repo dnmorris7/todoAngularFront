@@ -23,40 +23,40 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  handleLogin() {
+  // handleLogin() {
 
-    // if (this.username === "davidiumprime" && this.password === 'dummy') {
-    if (this.hardcodedAuthenticationService.authenticate(this.username, this.password)) {
-      //Redirect to welcome page
-      this.router.navigate(['welcome', this.username])
-      this.invalidLogin = false
-    }
-    else { this.invalidLogin = true }
-
-
-    console.log(this.username);
-    console.log(this.password);
-  }
-
-  handleBasicAuthLogin() {
-
-    // if (this.username === "davidiumprime" && this.password === 'dummy') {
-    this.basicAuthenticationService.executeAuthenticationService(this.username, this.password).subscribe(
-      data => {
-        console.log(data)
-        this.router.navigate(['welcome', this.username])
-        this.invalidLogin = false
-      },
-      error => {
-        console.log(error)
-        this.invalidLogin = true
-      }
-    )
+  //   // if (this.username === "davidiumprime" && this.password === 'dummy') {
+  //   if (this.hardcodedAuthenticationService.authenticate(this.username, this.password)) {
+  //     //Redirect to welcome page
+  //     this.router.navigate(['welcome', this.username])
+  //     this.invalidLogin = false
+  //   }
+  //   else { this.invalidLogin = true }
 
 
-   // console.log(this.username);
-   // console.log(this.password);
-  }
+  //   console.log(this.username);
+  //   console.log(this.password);
+  // }
+
+  // handleBasicAuthLogin() {
+
+  //   // if (this.username === "davidiumprime" && this.password === 'dummy') {
+  //   this.basicAuthenticationService.executeAuthenticationService(this.username, this.password).subscribe(
+  //     data => {
+  //       console.log(data)
+  //       this.router.navigate(['welcome', this.username])
+  //       this.invalidLogin = false
+  //     },
+  //     error => {
+  //       console.log(error)
+  //       this.invalidLogin = true
+  //     }
+  //   )
+
+
+  //  // console.log(this.username);
+  //  // console.log(this.password);
+  // }
 
   handleJWTAuthLogin() {
     this.basicAuthenticationService.executeJWTAuthenticationService(this.username, this.password)

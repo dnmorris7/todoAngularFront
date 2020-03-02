@@ -39,6 +39,7 @@ import { HttpIntercepterBasicAuthService } from './service/http/http-intercepter
   ],
   providers: [
 
+  //keeping the inteceptors on will mess up JWT. This will intercept the header, and replace "Bearer" with "Basic"
 {provide: HTTP_INTERCEPTORS, useClass: HttpIntercepterBasicAuthService, multi: true}
   ],
   bootstrap: [AppComponent]
